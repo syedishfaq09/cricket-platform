@@ -1,0 +1,883 @@
+/* =========================================
+   ALAMDAR STARS
+   PROFESSIONAL LIGHT THEME
+   ========================================= */
+
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #1f2937;
+  background-color: #f1f2f4;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   GLOBAL
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  background-color: #f1f2f4;
+  color: #1f2937;
+}
+
+/* =========================================
+   LIGHT PAGE BACKGROUND
+   ========================================= */
+
+.bg-dark {
+  background-color: #f1f2f4 !important;
+}
+
+main.bg-dark {
+  background-color: #f1f2f4 !important;
+}
+
+/* =========================================
+   TEXT
+   ========================================= */
+
+.text-white {
+  color: #1f2937 !important;
+}
+
+.text-secondary {
+  color: #6b7280 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #1f2937;
+}
+
+p {
+  color: #6b7280;
+}
+
+/* =========================================
+   GOLD BRANDING
+   ========================================= */
+
+.gold-text {
+  color: #d4af37 !important;
+}
+
+/* =========================================
+   PROFESSIONAL CARDS
+   ========================================= */
+
+.card {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+
+  border: 1px solid #e1e4e8 !important;
+  border-radius: 14px !important;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Card hover effect */
+
+.card:hover {
+  transform: translateY(-5px);
+
+  border-color: #d4af37 !important;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove old dark card colors */
+
+.card.bg-black,
+.card.bg-dark {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+}
+
+/* Card headings */
+
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6 {
+  color: #1f2937 !important;
+}
+
+/* Card paragraphs */
+
+.card p {
+  color: #6b7280 !important;
+}
+
+/* =========================================
+   CLICKABLE CARDS
+   ========================================= */
+
+.card[style*="cursor: pointer"] {
+  cursor: pointer;
+}
+
+.card[style*="cursor: pointer"]:hover {
+  transform: translateY(-6px);
+
+  border-color: #d4af37 !important;
+
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.11);
+}
+
+/* =========================================
+   ADMIN DASHBOARD CARD
+   ========================================= */
+
+.card[style*="backgroundColor"] {
+  background-color: #ffffff !important;
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.btn {
+  border-radius: 8px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Gold buttons */
+
+.btn[style*="backgroundColor"] {
+  background-color: #d4af37 !important;
+  color: #171717 !important;
+
+  border: none !important;
+}
+
+.btn[style*="backgroundColor"]:hover {
+  background-color: #c5a02f !important;
+
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.25);
+}
+
+/* =========================================
+   OUTLINE BUTTONS
+   ========================================= */
+
+.btn-outline-secondary {
+  color: #4b5563 !important;
+
+  border-color: #d1d5db !important;
+
+  background-color: #ffffff !important;
+}
+
+.btn-outline-secondary:hover {
+  color: #1f2937 !important;
+
+  background-color: #f3f4f6 !important;
+
+  border-color: #9ca3af !important;
+}
+
+/* =========================================
+   FORMS
+   ========================================= */
+
+.form-control,
+.form-select,
+textarea {
+  background-color: #ffffff !important;
+
+  color: #1f2937 !important;
+
+  border: 1px solid #d5d9df !important;
+
+  border-radius: 8px !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+  background-color: #ffffff !important;
+
+  color: #1f2937 !important;
+
+  border-color: #d4af37 !important;
+
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.15) !important;
+}
+
+.form-control::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Form labels */
+
+.form-label {
+  color: #374151 !important;
+
+  font-weight: 500;
+}
+
+/* =========================================
+   PROFILE PHOTO
+   ========================================= */
+
+img {
+  max-width: 100%;
+}
+
+/* =========================================
+   LINKS
+   ========================================= */
+
+a {
+  color: #1f2937;
+
+  text-decoration: none;
+}
+
+a:hover {
+  color: #d4af37;
+}
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+nav,
+.navbar {
+  background-color: #ffffff !important;
+
+  border-bottom: 1px solid #d4af37 !important;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.navbar a,
+nav a {
+  color: #1f2937 !important;
+}
+
+.navbar a:hover,
+nav a:hover {
+  color: #d4af37 !important;
+}
+
+/* =========================================
+   CONTAINERS
+   ========================================= */
+
+.container {
+  max-width: 1250px;
+}
+
+/* =========================================
+   GOLD BORDERS
+   ========================================= */
+
+.border-gold {
+  border-color: #d4af37 !important;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    border-radius: 12px !important;
+  }
+}
+
+/* =========================================
+   ALAMDAR STARS HOME PAGE
+   ========================================= */
+
+.home-page {
+  min-height: calc(100vh - 56px);
+  background: #f4f5f7;
+  color: #1f2937;
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.home-hero {
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gold decorative glow */
+.home-hero::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.08);
+  top: -150px;
+  right: -100px;
+}
+
+.home-hero::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.06);
+  bottom: -140px;
+  left: -100px;
+}
+
+/* Keep hero content above decorations */
+.home-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Main title */
+
+.home-title {
+  color: #171717 !important;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+/* Gold accent in hero */
+
+.home-title::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: #d4af37;
+  border-radius: 10px;
+  margin: 18px auto 0;
+}
+
+/* Hero subtitle */
+
+.home-subtitle {
+  color: #374151 !important;
+  font-weight: 700;
+}
+
+/* Hero description */
+
+.home-description {
+  color: #6b7280 !important;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
+   MAIN CARDS SECTION
+   ========================================= */
+
+.home-cards-section {
+  background: #f4f5f7;
+}
+
+/* =========================================
+   HOME CARDS
+   ========================================= */
+
+.home-card {
+  background: #ffffff !important;
+
+  color: #1f2937 !important;
+
+  border: 1px solid #e1e4e8 !important;
+
+  border-radius: 18px !important;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+
+  overflow: hidden;
+}
+
+/* Card headings */
+
+.home-card h1,
+.home-card h2,
+.home-card h3,
+.home-card h4,
+.home-card h5,
+.home-card h6 {
+  color: #1f2937 !important;
+}
+.home-card .p-3 h5 {
+  color: #ffffff !important;
+}
+
+.home-card .p-3 .text-white-50 {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* Card paragraphs */
+
+.home-card p {
+  color: #6b7280 !important;
+}
+
+/* Card hover */
+
+.home-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #d4af37 !important;
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(212, 175, 55, 0.15);
+}
+
+/* =========================================
+   GOLD TEXT
+   ========================================= */
+
+.home-gold-text {
+  color: #b08b16 !important;
+  font-weight: 700;
+}
+
+/* =========================================
+   CARD ICON
+   ========================================= */
+
+.home-card .display-3 {
+  transition: transform 0.25s ease;
+}
+
+.home-card:hover .display-3 {
+  transform: scale(1.06);
+}
+
+/* =========================================
+   LATEST PERFORMANCE
+   ========================================= */
+
+/*
+   The latest performance section intentionally
+   remains dark so it feels like a premium
+   match highlight/story card.
+*/
+
+.home-performance-card {
+  background: #11151b !important;
+  color: #ffffff !important;
+  border: 2px solid #d4af37 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.home-performance-card h1,
+.home-performance-card h2,
+.home-performance-card h3,
+.home-performance-card h4,
+.home-performance-card h5,
+.home-performance-card h6,
+.home-performance-card p {
+  color: #ffffff !important;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .home-hero {
+    min-height: 300px;
+  }
+
+  .home-title {
+    font-size: 2.3rem !important;
+    letter-spacing: 1px;
+  }
+
+  .home-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .home-description {
+    font-size: 0.95rem;
+  }
+
+  .home-cards-section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .home-card {
+    border-radius: 16px !important;
+  }
+}
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 480px) {
+  .home-hero {
+    min-height: 280px;
+  }
+
+  .home-title {
+    font-size: 2rem !important;
+  }
+
+  .home-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .home-description {
+    font-size: 0.9rem;
+  }
+}
+/* =========================================
+   MATCHES PAGE
+   ========================================= */
+
+.matches-page {
+  background-color: #f1f2f4;
+  min-height: calc(100vh - 56px);
+}
+
+.matches-title {
+  color: #d4af37 !important;
+}
+
+/* Match card */
+
+.match-card {
+  background-color: #ffffff;
+
+  border: 1px solid #e1e4e8;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-7px);
+
+  border-color: #d4af37;
+
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Stadium image */
+
+.match-image-container {
+  height: 180px;
+  overflow: hidden;
+}
+
+.match-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.match-card:hover .match-image {
+  transform: scale(1.05);
+}
+
+.match-image-placeholder {
+  height: 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 70px;
+
+  background: #e9eaec;
+}
+
+/* Status */
+
+.match-status {
+  display: inline-block;
+
+  padding: 5px 12px;
+
+  border-radius: 20px;
+
+  font-size: 0.8rem;
+
+  font-weight: 600;
+}
+
+.match-status.upcoming {
+  background-color: rgba(212, 175, 55, 0.15);
+  color: #9a7b16;
+}
+
+.match-status.live {
+  background-color: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+}
+
+.match-status.completed {
+  background-color: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+}
+
+/* Teams */
+
+.team-display {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.team {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex: 1;
+}
+
+.team-logo,
+.opponent-logo {
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background-color: #f1f2f4;
+
+  border: 2px solid #d4af37;
+
+  font-size: 28px;
+}
+
+.team strong {
+  font-size: 0.95rem;
+}
+
+.vs {
+  font-size: 0.85rem;
+
+  font-weight: 700;
+
+  color: #9ca3af;
+}
+
+/* Match information */
+
+.match-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+
+  color: #6b7280;
+
+  font-size: 0.9rem;
+}
+
+.match-info div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+/* Score */
+
+.match-score {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 18px;
+
+  font-size: 1.4rem;
+
+  color: #1f2937;
+}
+
+.score-separator {
+  color: #9ca3af;
+}
+
+/* Result */
+
+.match-result {
+  margin-top: 15px;
+
+  padding: 10px;
+
+  text-align: center;
+
+  border-radius: 8px;
+
+  background-color: rgba(212, 175, 55, 0.12);
+
+  color: #8a6d12;
+
+  font-weight: 600;
+}
+
+/* Player of match */
+
+.player-of-match {
+  margin-top: 15px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid #e5e7eb;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: #6b7280;
+
+  font-size: 0.9rem;
+}
+
+.player-of-match strong {
+  color: #1f2937;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .team-display {
+    gap: 8px;
+  }
+
+  .team strong {
+    font-size: 0.85rem;
+  }
+
+  .match-image-container,
+  .match-image-placeholder {
+    height: 160px;
+  }
+}
+
+/* Player performance card text */
+.home-card .player-name {
+  color: #1f2937 !important;
+}
+
+.home-card .player-jersey {
+  color: #6b7280 !important;
+}
+/* Force player names to dark */
+.home-card h5.player-name {
+  color: #1f2937 !important;
+}
+
+.home-card h5.player-name .player-jersey {
+  color: #6b7280 !important;
+}

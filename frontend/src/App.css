@@ -1,0 +1,505 @@
+/* =========================================
+   ALAMDAR STARS - LIGHT THEME
+   ========================================= */
+
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #171717;
+  background-color: #f5f5f3;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  background-color: #f5f5f3;
+  color: #171717;
+}
+
+/* Bootstrap dark backgrounds */
+.bg-dark {
+  background-color: #f5f5f3 !important;
+}
+
+.bg-black {
+  background-color: #ffffff !important;
+}
+
+/* Text */
+.text-white {
+  color: #171717 !important;
+}
+
+.text-secondary {
+  color: #6b7280 !important;
+}
+
+/* Cards */
+.card {
+  background-color: #ffffff !important;
+  color: #171717 !important;
+  border-color: #dddddd !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Card text */
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6,
+.card p {
+  color: inherit;
+}
+
+/* Gold branding */
+.gold-text {
+  color: #d4af37 !important;
+}
+
+/* Buttons */
+.btn {
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Forms */
+.form-control,
+.form-select,
+.form-control:focus,
+.form-select:focus,
+textarea {
+  background-color: #ffffff !important;
+  color: #171717 !important;
+}
+
+.form-control,
+.form-select,
+textarea {
+  border: 1px solid #d5d5d5 !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+  border-color: #d4af37 !important;
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.2) !important;
+}
+
+.form-control::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Dashboard clickable cards */
+.card[style*="cursor: pointer"] {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card[style*="cursor: pointer"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Links */
+a {
+  color: #171717;
+}
+
+a:hover {
+  color: #d4af37;
+}
+
+.footer-contact-label {
+  color: #c7ccd6;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.footer-contact-name {
+  color: #f1f3f5;
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.footer-whatsapp {
+  color: #ffffff;
+  font-size: 1.05rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+.footer-whatsapp:hover {
+  color: #d4af37;
+}
+
+.footer-phone {
+  color: #d9dde5;
+  font-size: 1rem;
+}
+
+.captain-message {
+  margin-top: 24px;
+}
+
+.captain-message h6 {
+  color: #d4af37;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.captain-message p {
+  color: #d9dde5;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   ALAMDAR STARS FOOTER
+========================================================= */
+
+.alamdar-footer {
+  background: #151c2b;
+  color: #ffffff;
+  padding: 58px 0 0;
+  margin-top: 0;
+}
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.footer-brand {
+  color: #d4af37;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 22px;
+}
+
+.footer-brand span {
+  margin-left: 6px;
+}
+
+.footer-tagline {
+  color: #c8ced8;
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+.footer-description {
+  color: #f0f2f5;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   SECTION TITLES
+========================================================= */
+
+.footer-section-title {
+  color: #d4af37;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.footer-section-title::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 2px;
+  background: #d4af37;
+  margin: 10px auto 0;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.footer-contact-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 34px;
+}
+
+.footer-contact-person {
+  flex: 1;
+}
+
+.footer-contact-role {
+  color: #f0f2f5;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.footer-person-icon {
+  color: #d4af37;
+  font-size: 1.25rem;
+  margin-right: 9px;
+}
+
+.footer-contact-name {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.footer-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-whatsapp:hover {
+  color: #d4af37;
+}
+
+.footer-whatsapp-icon {
+  color: #25d366;
+  font-size: 1.2rem;
+}
+
+.footer-phone {
+  color: #e1e5eb;
+  font-size: 1.05rem;
+  margin-top: 10px;
+}
+
+.footer-contact-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.35);
+  align-self: stretch;
+}
+
+/* =========================================================
+   SOCIAL MEDIA
+========================================================= */
+
+.footer-social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-social-link:hover {
+  color: #d4af37;
+}
+
+.footer-social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.facebook-icon {
+  background: #1877f2;
+}
+
+.instagram-icon {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.footer-external-icon {
+  margin-left: auto;
+  color: #cdd3dc;
+  font-size: 1rem;
+}
+
+/* =========================================================
+   CAPTAIN'S MESSAGE
+========================================================= */
+
+.footer-message-section {
+  margin-top: 45px;
+  padding-top: 20px;
+}
+
+.footer-message-line {
+  height: 1px;
+  background: rgba(212, 175, 55, 0.65);
+  width: 100%;
+}
+
+.footer-message-content {
+  text-align: center;
+  padding: 18px 20px 30px;
+}
+
+.footer-quote-mark {
+  color: #d4af37;
+  font-size: 3rem;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  line-height: 0.7;
+}
+
+.footer-message-title {
+  display: inline-block;
+  color: #d4af37;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.footer-message-star {
+  color: #d4af37;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.footer-message-text {
+  color: #f1f3f6;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.9;
+  margin: 10px 0 0;
+}
+
+/* =========================================================
+   COPYRIGHT
+========================================================= */
+
+.footer-copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  color: #cbd1da;
+  font-size: 0.95rem;
+  padding: 20px 10px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 991px) {
+  .alamdar-footer {
+    padding-top: 45px;
+  }
+
+  .footer-section-title {
+    text-align: left;
+  }
+
+  .footer-section-title::after {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .footer-contact-wrapper {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .alamdar-footer {
+    padding-top: 40px;
+  }
+
+  .footer-brand {
+    font-size: 1.5rem;
+  }
+
+  .footer-contact-wrapper {
+    gap: 20px;
+  }
+
+  .footer-contact-name {
+    font-size: 1.15rem;
+  }
+
+  .footer-phone {
+    font-size: 1rem;
+  }
+
+  .footer-message-section {
+    margin-top: 35px;
+  }
+
+  .footer-message-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .footer-contact-wrapper {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .footer-contact-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .footer-social-links {
+    gap: 15px;
+  }
+
+  .footer-message-content {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
