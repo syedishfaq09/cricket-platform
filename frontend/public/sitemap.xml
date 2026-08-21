@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://alamdar-stars-mashwara.netlify.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://alamdar-stars-mashwara.netlify.app/players</loc>
+  </url>
+
+  <url>
+    <loc>https://alamdar-stars-mashwara.netlify.app/matches</loc>
+  </url>
+
+  <url>
+    <loc>https://alamdar-stars-mashwara.netlify.app/posts</loc>
+  </url>
+
+  <url>
+    <loc>https://alamdar-stars-mashwara.netlify.app/announcements</loc>
+  </url>
+
+</urlset>
