@@ -6,7 +6,7 @@ const User = require("../models/User");
 /// REGISTER
 router.post("/register", async (req, res) => {
   try {
-    const { name, email, phone, password, role, player } = req.body;
+    const { name, email, phone, password } = req.body;
 
     const existingUser = await User.findOne({
       $or: [{ email }, { phone }],
@@ -23,18 +23,16 @@ router.post("/register", async (req, res) => {
       email,
       phone,
       password,
-      role,
-      status: role === "player" ? "pending" : "approved",
-      player: player || null,
+      role: "player",
+      status: "pending",
+      player: null,
     });
 
     await user.save();
 
     res.status(201).json({
       message:
-        role === "player"
-          ? "Registration successful. Your account is waiting for admin approval."
-          : "User registered successfully",
+        "Registration successful. Your account is waiting for admin approval.",
       user,
     });
   } catch (error) {
