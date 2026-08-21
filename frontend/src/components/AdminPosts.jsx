@@ -53,9 +53,9 @@ function AdminPosts() {
 
       const [postsResponse, playersResponse, matchesResponse] =
         await Promise.all([
-          fetch("http://localhost:5000/api/posts"),
-          fetch("http://localhost:5000/api/players"),
-          fetch("http://localhost:5000/api/matches"),
+          fetch(`${import.meta.env.VITE_API_URL}/api/posts`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/players`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/matches`),
         ]);
 
       const postsData = await postsResponse.json();
@@ -144,10 +144,13 @@ function AdminPosts() {
 
     formData.append("media", file);
 
-    const response = await fetch("http://localhost:5000/api/upload/media", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/upload/media`,
+      {
+        method: "POST",
+        body: formData,
+      },
+    );
 
     const data = await response.json();
 
@@ -193,8 +196,8 @@ function AdminPosts() {
       const isEditing = Boolean(editingPostId);
 
       const url = isEditing
-        ? `http://localhost:5000/api/posts/${editingPostId}`
-        : "http://localhost:5000/api/posts";
+        ? `${import.meta.env.VITE_API_URL}/api/posts/${editingPostId}`
+        : `${import.meta.env.VITE_API_URL}/api/posts`;
 
       const response = await fetch(url, {
         method: isEditing ? "PUT" : "POST",
@@ -256,7 +259,7 @@ function AdminPosts() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/posts/${postId}`,
+        `${import.meta.env.VITE_API_URL}/api/posts/${postId}`,
         {
           method: "DELETE",
           headers: {

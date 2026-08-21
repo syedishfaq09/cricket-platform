@@ -93,7 +93,9 @@ function Matches() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:5000/api/matches");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/matches`,
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch matches");
@@ -120,7 +122,9 @@ function Matches() {
 
   const fetchPlayers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/players");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/players`,
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch players");
@@ -175,10 +179,13 @@ function Matches() {
 
       uploadData.append("media", file);
 
-      const response = await fetch("http://localhost:5000/api/upload/media", {
-        method: "POST",
-        body: uploadData,
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/upload/media`,
+        {
+          method: "POST",
+          body: uploadData,
+        },
+      );
 
       const data = await response.json();
 
@@ -220,10 +227,13 @@ function Matches() {
 
       uploadData.append("media", file);
 
-      const response = await fetch("http://localhost:5000/api/upload/media", {
-        method: "POST",
-        body: uploadData,
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/upload/media`,
+        {
+          method: "POST",
+          body: uploadData,
+        },
+      );
 
       const data = await response.json();
 
@@ -361,8 +371,8 @@ function Matches() {
       const isEditing = Boolean(editingMatchId);
 
       const url = isEditing
-        ? `http://localhost:5000/api/matches/${editingMatchId}`
-        : "http://localhost:5000/api/matches";
+        ? `${import.meta.env.VITE_API_URL}/api/matches/${editingMatchId}`
+        : `${import.meta.env.VITE_API_URL}/api/matches`;
 
       // ==========================================
       // PREPARE DATA
@@ -592,7 +602,7 @@ function Matches() {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/matches/${performanceMatch._id}/performances`,
+        `${import.meta.env.VITE_API_URL}/api/matches/${performanceMatch._id}/performances`,
         {
           method: "PUT",
           headers: {
@@ -646,13 +656,16 @@ function Matches() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/matches/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "x-user-id": user._id,
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/matches/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-user-id": user._id,
+          },
         },
-      });
+      );
 
       const data = await response.json();
 

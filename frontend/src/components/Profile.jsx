@@ -29,7 +29,7 @@ function Profile() {
       return;
     }
 
-    fetch(`http://localhost:5000/api/players/${user.player}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/players/${user.player}`)
       .then((response) => response.json())
       .then((data) => {
         setPlayer(data);
@@ -66,10 +66,13 @@ function Profile() {
       // Backend expects "media"
       uploadData.append("media", file);
 
-      const response = await fetch("http://localhost:5000/api/upload/media", {
-        method: "POST",
-        body: uploadData,
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/upload/media`,
+        {
+          method: "POST",
+          body: uploadData,
+        },
+      );
 
       const data = await response.json();
 
@@ -115,7 +118,7 @@ function Profile() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/players/${user.player}`,
+        `${import.meta.env.VITE_API_URL}/api/players/${user.player}`,
         {
           method: "PUT",
           headers: {

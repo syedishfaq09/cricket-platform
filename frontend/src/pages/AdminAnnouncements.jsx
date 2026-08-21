@@ -25,7 +25,9 @@ function AdminAnnouncements() {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/announcements");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/announcements`,
+      );
 
       const data = await response.json();
 
@@ -43,20 +45,23 @@ function AdminAnnouncements() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/announcements", {
-        method: "POST",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/announcements`,
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-          "x-user-id": user._id,
+          headers: {
+            "Content-Type": "application/json",
+            "x-user-id": user._id,
+          },
+
+          body: JSON.stringify({
+            title,
+            description,
+            category: "Announcement",
+          }),
         },
-
-        body: JSON.stringify({
-          title,
-          description,
-          category: "Announcement",
-        }),
-      });
+      );
 
       if (response.ok) {
         setMessage("Announcement published successfully");
@@ -76,7 +81,7 @@ function AdminAnnouncements() {
 
     if (!confirmDelete) return;
 
-    await fetch(`http://localhost:5000/api/announcements/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/announcements/${id}`, {
       method: "DELETE",
     });
 

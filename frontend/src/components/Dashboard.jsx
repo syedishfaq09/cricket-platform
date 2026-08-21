@@ -23,7 +23,7 @@ function Dashboard() {
 
     setLoadingPlayer(true);
 
-    fetch(`http://localhost:5000/api/players/${user.player}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/players/${user.player}`)
       .then((response) => response.json())
       .then((data) => {
         setPlayer(data);
@@ -41,7 +41,9 @@ function Dashboard() {
 
     setLoadingMatches(true);
 
-    fetch(`http://localhost:5000/api/matches/player/${user.player}/completed`)
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/matches/player/${user.player}/completed`,
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch player matches");

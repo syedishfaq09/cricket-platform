@@ -11,7 +11,7 @@ function Posts() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:5000/api/posts");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`);
 
       const data = await response.json();
 

@@ -5,7 +5,7 @@ function Players() {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/players")
+    fetch(`${import.meta.env.VITE_API_URL}/api/players`)
       .then((response) => response.json())
       .then((data) => setPlayers(data))
       .catch((error) => console.error("Error fetching players:", error));

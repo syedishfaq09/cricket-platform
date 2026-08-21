@@ -10,7 +10,9 @@ function Announcements() {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/announcements");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/announcements`,
+      );
 
       const data = await response.json();
 

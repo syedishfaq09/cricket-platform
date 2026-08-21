@@ -65,7 +65,9 @@ function AdminDashboard() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:5000/api/players");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/players`,
+      );
 
       const data = await response.json();
 
@@ -94,7 +96,7 @@ function AdminDashboard() {
       setPendingLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/admin/pending-players",
+        `${import.meta.env.VITE_API_URL}/api/admin/pending-players`,
         {
           method: "GET",
           headers: {
@@ -132,7 +134,7 @@ function AdminDashboard() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/players/${playerId}/approve`,
+        `${import.meta.env.VITE_API_URL}/api/admin/players/${playerId}/approve`,
         {
           method: "PUT",
           headers: {
@@ -185,7 +187,7 @@ function AdminDashboard() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/players/${playerId}/reject`,
+        `${import.meta.env.VITE_API_URL}/api/admin/players/${playerId}/reject`,
         {
           method: "PUT",
           headers: {
@@ -226,7 +228,7 @@ function AdminDashboard() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/players/${playerId}/captain`,
+        `${import.meta.env.VITE_API_URL}/api/admin/players/${playerId}/captain`,
         {
           method: "PUT",
           headers: {
@@ -328,8 +330,8 @@ function AdminDashboard() {
       setMessage("");
 
       const url = editingPlayer
-        ? `http://localhost:5000/api/admin/players/${editingPlayer._id}`
-        : "http://localhost:5000/api/admin/players";
+        ? `${import.meta.env.VITE_API_URL}/api/admin/players/${editingPlayer._id}`
+        : `${import.meta.env.VITE_API_URL}/api/admin/players`;
 
       const response = await fetch(url, {
         method: editingPlayer ? "PUT" : "POST",
@@ -425,7 +427,7 @@ function AdminDashboard() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/players/${editingStatsPlayer._id}/stats`,
+        `${import.meta.env.VITE_API_URL}/api/admin/players/${editingStatsPlayer._id}/stats`,
         {
           method: "PUT",
           headers: {
@@ -487,7 +489,7 @@ function AdminDashboard() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/players/${playerId}`,
+        `${import.meta.env.VITE_API_URL}/api/admin/players/${playerId}`,
         {
           method: "DELETE",
           headers: {
