@@ -9,7 +9,7 @@ function AdminPosts() {
   const user = storedUser ? JSON.parse(storedUser) : null;
 
   const [posts, setPosts] = useState([]);
-  const [players, setPlayers] = useState([]);
+
   const [matches, setMatches] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,6 @@ function AdminPosts() {
     caption: "",
     category: "Other",
     match: "",
-    player: "",
   });
 
   const [selectedFiles, setSelectedFiles] = useState(null);
@@ -51,23 +50,16 @@ function AdminPosts() {
     try {
       setLoading(true);
 
-      const [postsResponse, playersResponse, matchesResponse] =
-        await Promise.all([
-          fetch(`${import.meta.env.VITE_API_URL}/api/posts`),
-          fetch(`${import.meta.env.VITE_API_URL}/api/players`),
-          fetch(`${import.meta.env.VITE_API_URL}/api/matches`),
-        ]);
+      const [postsResponse, matchesResponse] = await Promise.all([
+        fetch(`${import.meta.env.VITE_API_URL}/api/posts`),
+        fetch(`${import.meta.env.VITE_API_URL}/api/matches`),
+      ]);
 
       const postsData = await postsResponse.json();
-      const playersData = await playersResponse.json();
       const matchesData = await matchesResponse.json();
 
       if (postsResponse.ok) {
         setPosts(postsData);
-      }
-
-      if (playersResponse.ok) {
-        setPlayers(playersData);
       }
 
       if (matchesResponse.ok) {
@@ -90,7 +82,6 @@ function AdminPosts() {
       caption: "",
       category: "Other",
       match: "",
-      player: "",
     });
 
     setSelectedFiles(null);
@@ -121,7 +112,6 @@ function AdminPosts() {
       caption: post.caption || "",
       category: post.category || "Other",
       match: post.match?._id || "",
-      player: post.player?._id || "",
     });
 
     setSelectedFiles(null);
@@ -213,8 +203,6 @@ function AdminPosts() {
           category: formData.category,
 
           match: formData.match || null,
-
-          player: formData.player || null,
 
           media: validMedia,
         }),
@@ -427,27 +415,6 @@ function AdminPosts() {
                     ))}
                   </select>
                 </div>
-
-                {/* PLAYER */}
-
-                <div className="col-md-4">
-                  <label className="form-label">Related Player</label>
-
-                  <select
-                    name="player"
-                    className="form-select"
-                    value={formData.player}
-                    onChange={handleChange}
-                  >
-                    <option value="">No Player</option>
-
-                    {players.map((player) => (
-                      <option key={player._id} value={player._id}>
-                        {player.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
               </div>
 
               {/* MEDIA */}
@@ -606,10 +573,6 @@ function AdminPosts() {
                     <p className="text-secondary mt-3 mb-1">
                       🏏 vs {post.match.opponent}
                     </p>
-                  )}
-
-                  {post.player && (
-                    <p className="text-secondary mb-1">👤 {post.player.name}</p>
                   )}
 
                   <div className="d-flex gap-2 mt-4">
