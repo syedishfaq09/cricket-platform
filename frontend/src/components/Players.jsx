@@ -19,82 +19,52 @@ function Players() {
           <p className="lead">Our Players</p>
         </div>
 
-        <div className="row g-4">
+        {/* PLAYERS LIST — compact mobile-first rows */}
+        <div className="players-list">
           {players.map((player) => (
-            <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={player._id}>
-              <div className="card bg-black text-white h-100 text-center border-secondary">
-                <div className="card-body">
-                  {/* PHOTO */}
-                  {player.photo ? (
-                    <img
-                      src={player.photo}
-                      alt={player.name}
-                      className="mb-3"
-                      style={{
-                        width: "120px",
-                        height: "120px",
-                        objectFit: "cover",
-                        borderRadius: "50%",
-                        border: "3px solid #d4af37",
-                      }}
-                    />
-                  ) : (
-                    <div className="display-4 mb-3">👤</div>
-                  )}
-
-                  {/* NAME */}
-                  <h4>
-                    {player.name}
-
-                    {player.isCaptain && (
-                      <span
-                        className="badge ms-2"
-                        style={{
-                          backgroundColor: "#d4af37",
-                          color: "#000",
-                          fontSize: "0.7rem",
-                          padding: "5px 7px",
-                          borderRadius: "50%",
-                        }}
-                        title="Captain"
-                      >
-                        👑
-                      </span>
-                    )}
-                  </h4>
-
-                  {/* ROLE */}
-                  <p className="text-secondary">
-                    Role: {player.role || "Not specified"}
-                  </p>
-
-                  <hr />
-
-                  {/* BASIC STATS */}
-                  <p className="mb-1">Best Score: {player.bestScore ?? 0}</p>
-
-                  <p className="mb-1">Runs: {player.totalRuns ?? 0}</p>
-
-                  <p className="mb-3">Strike Rate: {player.strikeRate ?? 0}</p>
-
-                  {/* ABOUT BUTTON */}
-                  <button
-                    className="btn w-100"
-                    style={{
-                      backgroundColor: "#d4af37",
-                      color: "#000",
-                    }}
-                    onClick={() => setSelectedPlayer(player)}
-                  >
-                    About
-                  </button>
-                </div>
+            <div className="player-row-card" key={player._id}>
+              {/* PHOTO */}
+              <div className="player-row-photo-wrap">
+                {player.photo ? (
+                  <img src={player.photo} alt={player.name} />
+                ) : (
+                  <span className="player-row-photo-fallback">👤</span>
+                )}
               </div>
+
+              {/* NAME + ROLE */}
+              <div className="player-row-info">
+                <div className="player-row-name-line">
+                  <span className="player-row-name" title={player.name}>
+                    {player.name}
+                  </span>
+
+                  {player.isCaptain && (
+                    <span className="player-row-crown" title="Captain">
+                      👑
+                    </span>
+                  )}
+                </div>
+
+                {player.role && (
+                  <span className="player-row-role">{player.role}</span>
+                )}
+              </div>
+
+              {/* ABOUT BUTTON */}
+              <button
+                type="button"
+                className="player-row-about-btn"
+                onClick={() => setSelectedPlayer(player)}
+                aria-label={`About ${player.name}`}
+              >
+                About
+              </button>
             </div>
           ))}
         </div>
 
-        {/* ABOUT MODAL */}
+        {/* ABOUT MODAL — unchanged behavior, still fed by real player data */}
         {selectedPlayer && (
           <div
             className="modal d-block"
@@ -137,6 +107,22 @@ function Players() {
                     )}
 
                     <h5 className="mt-3">{selectedPlayer.role || "Player"}</h5>
+
+                    {/* OPTIONAL META — only rendered when the field already exists in the data */}
+                    {(selectedPlayer.jerseyNumber ||
+                      selectedPlayer.battingStyle ||
+                      selectedPlayer.bowlingStyle) && (
+                      <p className="text-secondary mb-0">
+                        {[
+                          selectedPlayer.jerseyNumber &&
+                            `#${selectedPlayer.jerseyNumber}`,
+                          selectedPlayer.battingStyle,
+                          selectedPlayer.bowlingStyle,
+                        ]
+                          .filter(Boolean)
+                          .join(" • ")}
+                      </p>
+                    )}
                   </div>
 
                   {/* STATISTICS */}

@@ -732,3 +732,183 @@ a:hover {
     padding: 8px 12px 12px;
   }
 }
+
+/* =========================================
+   PLAYERS PAGE — COMPACT ROW CARDS
+   (mobile-first player directory)
+   ========================================= */
+
+.players-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Multi-column on larger screens — same row style, just more of them per line */
+@media (min-width: 700px) {
+  .players-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .players-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.player-row-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 68px;
+
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 14px;
+  padding: 10px 12px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.player-row-card:hover {
+  transform: translateY(-2px);
+  border-color: #d4af37;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+/* PHOTO */
+.player-row-photo-wrap {
+  flex-shrink: 0;
+
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+
+  overflow: hidden;
+  border: 2px solid #d4af37;
+  background-color: #f1f2f4;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-row-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.player-row-photo-fallback {
+  font-size: 24px;
+  color: #9ca3af;
+}
+
+/* NAME + ROLE */
+.player-row-info {
+  flex: 1 1 auto;
+  min-width: 0; /* required so long names can truncate instead of pushing the button off */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.player-row-name-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.player-row-name {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #1f2937;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-row-crown {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+}
+
+.player-row-role {
+  font-size: 0.8rem;
+  color: #6b7280;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ABOUT BUTTON */
+.player-row-about-btn {
+  flex-shrink: 0;
+
+  border: none;
+  background-color: #d4af37;
+  color: #171717;
+
+  font-weight: 700;
+  font-size: 0.82rem;
+
+  padding: 10px 16px;
+  min-height: 42px;
+  min-width: 66px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.player-row-about-btn:hover,
+.player-row-about-btn:active {
+  background-color: #c5a02f;
+  transform: translateY(-1px);
+}
+
+/* Extra-small phones (320px–359px) */
+@media (max-width: 359px) {
+  .player-row-card {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .player-row-photo-wrap {
+    width: 44px;
+    height: 44px;
+  }
+
+  .player-row-name {
+    font-size: 0.9rem;
+  }
+
+  .player-row-about-btn {
+    padding: 8px 12px;
+    min-height: 38px;
+    min-width: 56px;
+    font-size: 0.78rem;
+  }
+}
