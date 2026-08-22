@@ -14,9 +14,13 @@ createRoot(document.getElementById("root")).render(
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/service-worker.js")
+      .register("/service-worker.js", {
+        updateViaCache: "none",
+      })
       .then((registration) => {
         console.log("Alamdar Stars service worker registered:", registration);
+
+        registration.update();
       })
       .catch((error) => {
         console.error("Service worker registration failed:", error);

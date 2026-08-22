@@ -1,8 +1,6 @@
-const CACHE_NAME = "alamdar-stars-v2";
+const CACHE_NAME = "alamdar-stars-v3";
 
 const STATIC_ASSETS = [
-  "/",
-  "/index.html",
   "/manifest.webmanifest",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
@@ -52,6 +50,22 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Handle page navigation separately
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          return response;
+        })
+        .catch(() => {
+          return caches.match("/index.html");
+        }),
+    );
+
+    return;
+  }
+
+  // Static assets: cache first, then network
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
