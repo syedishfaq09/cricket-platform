@@ -7,6 +7,15 @@ function Posts() {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
+  // Tracks whether each image should be shown with object-fit: cover
+  // or object-fit: contain, decided once the image loads (see
+  // handleImageLoad below).
+  const [imageFit, setImageFit] = useState({});
+
+  // Tracks which slide is active for posts with more than one media
+  // item, so we can show an Instagram-style dot indicator.
+  const [activeSlide, setActiveSlide] = useState({});
+
   const fetchPosts = async () => {
     try {
       setLoading(true);
@@ -58,6 +67,41 @@ function Posts() {
     return icons[category] || "📝";
   };
 
+  // Decide how a given image should fit its 4:5 frame based on its
+  // natural aspect ratio. Portrait / near-square / full-body shots
+  // (most player and match photos) crop nicely with "cover" and stay
+  // filled edge-to-edge. Clearly wide/landscape images would lose
+  // important content (banners, faces, trophies) if force-cropped to
+  // 4:5, so those fall back to "contain" instead of cutting them off.
+  const handleImageLoad = (key, event) => {
+    const { naturalWidth, naturalHeight } = event.target;
+
+    if (!naturalWidth || !naturalHeight) {
+      return;
+    }
+
+    const ratio = naturalWidth / naturalHeight;
+
+    setImageFit((prev) => ({
+      ...prev,
+      [key]: ratio > 1.15 ? "contain" : "cover",
+    }));
+  };
+
+  const handleMediaScroll = (postId, event) => {
+    const { scrollLeft, clientWidth } = event.currentTarget;
+
+    if (!clientWidth) {
+      return;
+    }
+
+    const index = Math.round(scrollLeft / clientWidth);
+
+    setActiveSlide((prev) =>
+      prev[postId] === index ? prev : { ...prev, [postId]: index },
+    );
+  };
+
   if (loading) {
     return (
       <main className="min-vh-100 py-5">
@@ -107,75 +151,97 @@ function Posts() {
             </p>
           </div>
         ) : (
-          <div className="row g-4">
-            {posts.map((post) => (
-              <div className="col-lg-8 mx-auto" key={post._id}>
-                <div
-                  className="card p-4"
-                  style={{ cursor: "pointer" }}
+          <div className="ig-feed">
+            {posts.map((post) => {
+              const mediaCount = post.media?.length || 0;
+              const currentSlide = activeSlide[post._id] || 0;
+
+              return (
+                <article
+                  className="ig-post-card"
+                  key={post._id}
                   onClick={() => navigate(`/posts/${post._id}`)}
                 >
-                  {/* CATEGORY */}
-                  <div className="d-flex justify-content-between align-items-center mb-3">
-                    <span
-                      className="badge rounded-pill"
-                      style={{
-                        backgroundColor: "#d4af37",
-                        color: "#171717",
-                        padding: "8px 14px",
-                      }}
-                    >
+                  {/* CATEGORY + DATE */}
+                  <div className="ig-post-topbar">
+                    <span className="ig-post-badge">
                       {getCategoryIcon(post.category)} {post.category}
                     </span>
 
-                    <small className="text-secondary">
+                    <span className="ig-post-date">
                       {formatDate(post.createdAt)}
-                    </small>
+                    </span>
                   </div>
 
                   {/* CAPTION */}
-                  <h3 className="fw-bold">{post.caption}</h3>
+                  <h3 className="ig-post-title">{post.caption}</h3>
 
                   {/* MEDIA */}
-                  {post.media?.length > 0 && (
-                    <div className="row g-2 mt-2">
-                      {post.media.map((media, index) => (
-                        <div className="col-md-6" key={`${post._id}-${index}`}>
-                          {media.type === "image" ? (
-                            <img
-                              src={media.url}
-                              alt={post.caption}
-                              className="img-fluid rounded"
-                              style={{
-                                width: "100%",
-                                height: "280px",
-                                objectFit: "cover",
-                              }}
+                  {mediaCount > 0 && (
+                    <div className="ig-post-media">
+                      <div
+                        className="ig-post-media-track"
+                        onScroll={
+                          mediaCount > 1
+                            ? (event) => handleMediaScroll(post._id, event)
+                            : undefined
+                        }
+                        // Prevent a swipe between multiple photos from
+                        // also registering as a "open post" tap, while
+                        // leaving single-image posts fully clickable
+                        // exactly as before.
+                        onClick={
+                          mediaCount > 1
+                            ? (event) => event.stopPropagation()
+                            : undefined
+                        }
+                      >
+                        {post.media.map((media, index) => {
+                          const mediaKey = `${post._id}-${index}`;
+                          const fit = imageFit[mediaKey] || "cover";
+
+                          return (
+                            <div className="ig-post-slide" key={mediaKey}>
+                              {media.type === "image" ? (
+                                <img
+                                  src={media.url}
+                                  alt={post.caption}
+                                  className={`ig-post-image ig-fit-${fit}`}
+                                  loading="lazy"
+                                  onLoad={(event) =>
+                                    handleImageLoad(mediaKey, event)
+                                  }
+                                />
+                              ) : (
+                                <video
+                                  src={media.url}
+                                  controls
+                                  className="ig-post-video"
+                                />
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {mediaCount > 1 && (
+                        <div className="ig-post-dots">
+                          {post.media.map((_, index) => (
+                            <span
+                              key={index}
+                              className={`ig-post-dot ${
+                                currentSlide === index ? "active" : ""
+                              }`}
                             />
-                          ) : (
-                            <video
-                              src={media.url}
-                              controls
-                              className="w-100 rounded"
-                              style={{
-                                height: "280px",
-                                objectFit: "cover",
-                              }}
-                            />
-                          )}
+                          ))}
                         </div>
-                      ))}
+                      )}
                     </div>
                   )}
 
                   {/* MATCH */}
                   {post.match && (
-                    <div
-                      className="mt-3 p-3 rounded"
-                      style={{
-                        backgroundColor: "#f1f2f4",
-                      }}
-                    >
+                    <div className="ig-post-match">
                       🏏 <strong>Match:</strong> Alamdar Stars vs{" "}
                       {post.match.opponent}
                     </div>
@@ -183,41 +249,22 @@ function Posts() {
 
                   {/* PLAYER */}
                   {post.player && (
-                    <div
-                      className="mt-3 p-3 rounded d-flex align-items-center"
-                      style={{
-                        backgroundColor: "#fffaf0",
-                        border: "1px solid #d4af37",
-                      }}
-                    >
+                    <div className="ig-post-player">
                       {post.player.photo ? (
                         <img
                           src={post.player.photo}
                           alt={post.player.name}
-                          style={{
-                            width: "55px",
-                            height: "55px",
-                            objectFit: "cover",
-                            borderRadius: "50%",
-                            marginRight: "15px",
-                          }}
+                          className="ig-post-player-photo"
                         />
                       ) : (
-                        <div
-                          style={{
-                            fontSize: "2rem",
-                            marginRight: "15px",
-                          }}
-                        >
-                          👤
-                        </div>
+                        <div className="ig-post-player-icon">👤</div>
                       )}
 
                       <div>
                         <strong>{post.player.name}</strong>
 
                         {post.player.role && (
-                          <div className="text-secondary">
+                          <div className="ig-post-player-role">
                             {post.player.role}
                           </div>
                         )}
@@ -226,12 +273,12 @@ function Posts() {
                   )}
 
                   {/* CREATED BY */}
-                  <div className="text-secondary mt-3">
+                  <div className="ig-post-footer">
                     Posted by {post.createdBy?.name || "Alamdar Stars"}
                   </div>
-                </div>
-              </div>
-            ))}
+                </article>
+              );
+            })}
           </div>
         )}
       </div>
