@@ -17,6 +17,7 @@ import AdminLogin from "./pages/AdminLogin";
 import Register from "./pages/Register";
 import AdminTeam from "./pages/AdminTeam";
 import Footer from "./components/Footer";
+import DeveloperCredit from "./components/DeveloperCredit";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/admin/team" element={<AdminTeam />} />
       </Routes>
       <Footer />
+      <DeveloperCredit />
     </BrowserRouter>
   );
 }
