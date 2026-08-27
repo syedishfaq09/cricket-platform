@@ -185,6 +185,27 @@ function Home() {
   };
 
   // ==========================================
+  // CHECK IF MATCH TIME HAS PASSED
+  // ==========================================
+
+  const hasMatchExpired = (match) => {
+    if (!match?.date || !match?.time) {
+      return false;
+    }
+
+    const matchDate = new Date(match.date);
+
+    const [hours, minutes] = match.time.split(":");
+
+    matchDate.setHours(Number(hours));
+    matchDate.setMinutes(Number(minutes));
+    matchDate.setSeconds(0);
+    matchDate.setMilliseconds(0);
+
+    return new Date() >= matchDate;
+  };
+
+  // ==========================================
   // FORMAT DATE
   // ==========================================
 
@@ -289,7 +310,9 @@ function Home() {
                 }}
               >
                 {matchStory.status === "Upcoming"
-                  ? "Upcoming Match"
+                  ? hasMatchExpired(matchStory)
+                    ? "Expired"
+                    : "Upcoming Match"
                   : "Match Completed"}
               </div>
 
@@ -553,7 +576,7 @@ function Home() {
       <section className="container py-5">
         <div className="home-card p-4">
           <div className="text-center mb-4">
-            <div className="display-4">🏏</div>
+            <div className="display-4"></div>
 
             <h2 className="fw-bold mt-2">LATEST MATCH PERFORMANCE</h2>
 
